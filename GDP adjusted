@@ -1,0 +1,14 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+happiness_2016=pd.read_csv('2016.csv')
+print(happiness_2016)
+print(happiness_2016.head(20))
+happiness_2016.dropna()
+happiness_20161GDP=happiness_2016[['Country','Happiness Score','GDP']]
+print(happiness_20161GDP)
+GDPmean2=happiness_20161GDP[happiness_20161GDP['GDP']>=0.9538798089171975]
+print(GDPmean2)
+GDPadj=GDPmean2.sort_values('Happiness Score',ascending=False)
+print(GDPadj)
+print(GDPadj.head(21))
