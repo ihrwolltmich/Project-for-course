@@ -1,0 +1,80 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+happiness_2016=pd.read_csv('2016.csv')
+print(happiness_2016)
+print(happiness_2016.head(20))
+happiness_2016.dropna()
+happiness_20161GDP=happiness_2016[['Country','Happiness Score','Economy (GDP per Capita)']]
+print(happiness_20161GDP)
+GDPmean2=happiness_20161GDP[happiness_20161GDP['Economy (GDP per Capita)']>=0.9538798089171975]
+print(GDPmean2)
+GDPadj=GDPmean2.sort_values('Happiness Score',ascending=False)
+print(GDPadj)
+print(GDPadj.head(21))
+GDPadj1=GDPmean2.sort_values('Happiness Score',ascending=True)
+print(GDPadj1)
+print(GDPadj1.head(20))
+obesity2016=pd.read_csv('WHO_obesityByCountry_2016.csv')
+print(obesity2016)
+obesity2016.head(30)
+obesity20161=obesity2016.dropna(how='all')
+print(obesity20161)
+obesity20162=obesity2016[['Countries','Both.sexes']]
+print(obesity20162)
+print(obesity20162.head(20))
+obesity20162s=obesity20162.sort_values('Both.sexes',ascending=False)
+print(obesity20162s)
+obesity2016sc=obesity20162s.dropna()
+print(obesity2016sc)
+obesityscfiltered=obesity2016sc[obesity2016sc['Countries'].isin(['Denmark','Switzerland','Iceland','Norway','Finland','Canada','Netherlands','New Zealand','Australia','Sweden','Israel','Austria','Costa Rica','Puerto Rico','Germany','Brazil','Belgium','Ireland','Luxembourg','Mexico','Singapore','United Kingdom','Chile','Panama','Argentina','Czech Republic','United Arab Emirates','Uruguay','Malta','Colombia','France','Thailand','Saudi Arabia','Taiwan','Qatar','Spain','Algeria','Guatemala','Suriname','Kuwait','Bahrain','Trinidad and Tobago','Venezuela','Slovakia','El Salvador','Malaysia','Uzbekistan','Italy','Ecuador','Belize','Japan','Kazakhstan','Moldova','Russia','Poland','South Korea','Lithuania','Belarus','North Cyprus','Slovenia','Peru','Turkmenistan','Mauritius','Libya','Latvia','Cyprus','Paraguay','Romania','Estonia','Jamaica','Croatia','Hong Kong','Somalia','Kosovo','Turkey','Indonesia','Jordan','Azerbaijan','Philippines','China','Bhutan','Kyrgyzstan','Serbia','Bosnia and Herzegovina','Montenegro','Dominican Republic','Morocco','Hungary','Pakistan','Lebanon','Portugal','Macedonia','Viet Nam','Somaliland Region','Tunisia','Greece','Tajikistan','Mongolia','Laos','Nigeria','Honduras','Iran','Zambia','Nepal','Palestinian Territories','Albania','Bangladesh','Sierra Leone','Iraq','Namibia','Cameroon','Ethiopia','South Africa','Bolivia','Sri Lanka','India','Myanmar','Egypt','Armenia','Kenya','Ukraine','Ghana','Georgia','Congo','Senegal','Bulgaria','Mauritania','Zimbabwe','Malawi','Sudan','Gabon','Mali','Haiti','Botswana','Comoros','Ivory Coast','Cambodia','Angola','Niger','South Sudan','Chad','Burkina Faso','Uganda','Yemen','Madagascar','Tanzania','Liberia','Guinea','Rwanda','Benin','Afghanistan','Togo','Syria','Burundi','United States of America','Nicaragua','Macedonia','Iran'])]
+print(obesityscfiltered)
+obesityscfiltered2=obesityscfiltered.sort_values('Both.sexes',ascending=False)
+obesitytop20=obesityscfiltered2.head(20)
+print(obesitytop20)
+obesityscfiltered3=obesityscfiltered[obesityscfiltered['Countries'].isin(['Botswana','Gabon','Bulgaria','Egypt','Sri Lanka','South Africa','Iraq','Albania','Mongolia','Greece','Tunisia','Macedonia','Portugal','Lebanon','Hungary','Dominican Republic','Montenegro','Serbia','China','Macedonia','Iran'])]
+print(obesityscfiltered3)
+print(GDPadj1.head(21))
+Top20unhappyGDP= GDPadj1.head(21)
+obesityscfiltered4=obesityscfiltered[obesityscfiltered['Countries'].isin(['Botswana','Gabon','Bulgaria','Egypt','Sri Lanka','South Africa','Iraq','Albania','Mongolia','Greece','Tunisia','Macedonia','Portugal','Lebanon','Hungary','Dominican Republic','Montenegro','Serbia','China','Azerbaijan','Iran'])]
+print(obesityscfiltered4)
+Top20unhappyGDPadj=Top20unhappyGDP[['Happiness Score','Country']]
+print(Top20unhappyGDPadj)
+Top20happyadj1=Top20unhappyGDPadj.rename({'Country':'Countries'},axis=1)
+print(Top20happyadj1)
+obeseandunhappy=pd.merge(Top20happyadj1,obesityscfiltered4)
+print(obeseandunhappy)
+dd1=obesityscfiltered[obesityscfiltered['Countries'].isin(['Denmark','Switzerland','Iceland','Norway','Finland','Canada','Netherlands','New Zealand','Australia','Sweden','Israel','Austria','Costa Rica','Germany','Brazil','Belgium','Ireland','Luxembourg','United States of America','Mexico'])]
+print(dd1)
+print(GDPadj.head(21))
+GDPadj1F=GDPadj1[['Country','Happiness Score']]
+print(GDPadj1F)
+GDPadj1F1=GDPadj1F.sort_values('Happiness Score',ascending=False)
+print(GDPadj1F1)
+GDPadjF1Top20=GDPadj1F1.head(21)
+print(GDPadjF1Top20)
+GDPadjF1Top201=GDPadjF1Top20.rename({'Country':'Countries'},axis=1)
+print(GDPadjF1Top201)
+GDPadjF1Top202=GDPadjF1Top201.replace(['United States'],'United States of America')
+print(GDPadjF1Top202)
+GDPadjF1Top203=GDPadjF1Top202.drop(GDPadjF1Top202.index[14])
+print(GDPadjF1Top203)
+print(dd1)
+Top20happiestcountries=pd.merge(GDPadjF1Top203,dd1)
+print(Top20happiestcountries)
+Top20happiestcountries=Top20happiestcountries.rename({'Happiness Score':'HappinessScore'},axis=1)
+Top20happiestcountries=Top20happiestcountries.rename({'Both.sexes':'Bothsexes'},axis=1)
+print(Top20happiestcountries)
+fig,ax=plt.subplots()
+ax.scatter(Top20happiestcountries['Bothsexes'],Top20happiestcountries['HappinessScore'],color='red',label='Top 20 happiest countries')
+ax.scatter(obeseandunhappy['Both.sexes'],obeseandunhappy['Happiness Score'],color='yellow',label='Obesity Rate Top 20 unhappy countries GDP adjusted')
+ax.legend()
+ax.set_xlabel('Both.sexes')
+ax.set_ylabel('Happiness.Score')
+plt.title('Unhappiest countries vs Happiest countries')
+plt.show()
+
+
+
+
+
