@@ -1,0 +1,40 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+# We import the first CSV file, showing us the obesity rate per country
+obesity2016=pd.read_csv('WHO_obesityByCountry_2016 (2).csv')
+itr = next(obesity2016.iterrows())[1]
+print(itr)
+print(obesity2016)
+obesity2016.head(30)
+obesity20161=obesity2016.dropna()
+print(obesity20161)
+row2=obesity2016.iloc[1,:]
+print(row2)
+happiness_2016=pd.read_csv('2016.csv')
+itr2 = next(happiness_2016.iterrows())[1]
+print(itr2)
+print(happiness_2016)
+print(happiness_2016.head(20))
+happiness_20161=happiness_2016.dropna()
+print(happiness_20161)
+row2h=happiness_20161.iloc[1,:]
+print(row2h)
+print(obesity20161.to_string())
+print(happiness_20161.to_string())
+obesity20161f=obesity20161[obesity20161['Countries'].isin(['Denmark','Switzerland','Iceland','Norway','Finland','Canada','Netherlands','New Zealand','Australia','Sweden','Israel','Austria','Costa Rica','Puerto Rico','Germany','Brazil','Belgium','Ireland','Luxembourg','Mexico','Singapore','Chile','Panama','Argentina','United Arab Emirates','Uruguay','Malta','Colombia','France','Thailand','Saudi Arabia','Taiwan','Qatar','Spain','Algeria','Guatemala','Suriname','Kuwait','Bahrain','Trinidad and Tobago','Venezuela (Bolivarian Republic of)','Slovakia','El Salvador','Malaysia','Uzbekistan','Italy','Ecuador','Belize','Japan','Kazakhstan','Republic of Moldova','Russian Federation','Poland','Lithuania','Belarus','North Cyprus','Slovenia','Peru','Turkmenistan','Mauritius','Libya','Latvia','Cyprus','Paraguay','Romania','Estonia','Jamaica','Croatia','Somalia','Kosovo','Turkey','Indonesia','Jordan','Azerbaijan','Philippines','China','Bhutan','Kyrgyzstan','Serbia','Bosnia and Herzegovina','Montenegro','Dominican Republic','Morocco','Hungary','Pakistan','Lebanon','Portugal','Macedonia','Viet Nam','Somaliland Region','Tunisia','Greece','Tajikistan','Mongolia','Lao Peoples Democratic Republic','Nigeria','Honduras','Iran','Zambia','Nepal','Palestinian Territories','Albania','Bangladesh','Sierra Leone','Iraq','Namibia','Cameroon','Ethiopia','South Africa','Bolivia','Sri Lanka','India','Myanmar','Egypt','Armenia','Kenya','Ukraine','Ghana','Georgia','Congo','Senegal','Bulgaria','Mauritania','Zimbabwe','Malawi','Sudan','Gabon','Mali','Haiti','Botswana','Comoros','Cambodia','Angola','Niger','South Sudan','Chad','Burkina Faso','Uganda','Yemen','Madagascar','United Republic of Tanzania','Liberia','Guinea','Rwanda','Benin','Afghanistan','Togo','Burundi','United States of America','Nicaragua','Democratic Republic of the Congo','CÃ´te dIvoire','Czechia','Democratic Peoples Republic of Korea','Syrian Arab Republic','United Kingdom of Great Britain and Northern Ireland',])]
+print(obesity20161f)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
