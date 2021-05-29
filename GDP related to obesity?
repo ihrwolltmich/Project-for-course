@@ -1,0 +1,15 @@
+happiness_20161a10_country_happiness_scoreu1=happiness_20161a10_country_happiness_scoreu[['Country','Happiness Score','GDP']]
+print(happiness_20161a10_country_happiness_scoreu1)
+happiness_20161a10_country_happiness_scoreu2=happiness_20161a10_country_happiness_scoreu1[happiness_20161a10_country_happiness_scoreu1['Country'].isin(['Botswana','Comoros','Cate dIvoire','Cambodia','Angola','Niger','Chad','Burkina Faso','Uganda','Yemen','Madagascar','United Republic of Tanzania',' Liberia','Guinea','Rwanda','Benin','Afghanistan','Togo','China','Syrian Arab Republic','Burundi'])]
+print(happiness_20161a10_country_happiness_scoreu2)
+GDPaverage=happiness_20161a10['GDP'].mean()
+print(GDPaverage)
+obesityandGDPrate=pd.merge(happiness_20161a10_country_happiness_scoreu2,obesityrateofunhappiestcountries)
+print(obesityandGDPrate)
+fig,ax=plt.subplots()
+ax.scatter(obesityandGDPrate['Both.sexes'],obesityandGDPrate['GDP'],color='blue',label='Top 20 unhappiest countries')
+ax.legend()
+plt.title("Happiest vs Unhappiest Countries/AVG Obesity Rate:18.50/AVG GDP 0.954")
+ax.set_xlabel('Obesity rate in Percentage')
+ax.set_ylabel('GDP')
+plt.show()
