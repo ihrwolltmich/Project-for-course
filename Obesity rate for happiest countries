@@ -1,0 +1,13 @@
+happiness_20161a10_country_happiness_score=happiness_20161a10[['Country','Happiness Score']]
+obesity20161mf=obesity20161f[['Countries','Both.sexes']]
+obesity20161mf1=obesity20161mf.rename({'Countries':'Country'},axis=1)
+print(happiness_20161a10_country_happiness_score)
+print(obesity20161mf1)
+happiness_20161a10_country_happiness_score_sorted=happiness_20161a10_country_happiness_score.sort_values('Happiness Score',ascending=False)
+print(happiness_20161a10_country_happiness_score_sorted)
+Top20happiestcountries=happiness_20161a10_country_happiness_score_sorted.head(20)
+print(Top20happiestcountries)
+obesityrateofhappiestcountries=obesity20161mf1[obesity20161mf1['Country'].isin(['Denmark','Switzerland','Iceland','Norway','Finland','Canada','Netherlands','New Zealand','Australia','Sweden','Israel','Austria','Costa Rica','Mexico','Germany','Brazil','Belgium','Ireland','Luxembourg','United States of America'])]
+print(obesityrateofhappiestcountries)
+Top20happyobesityrate=pd.merge(obesityrateofhappiestcountries,Top20happiestcountries)
+print(Top20happyobesityrate)
