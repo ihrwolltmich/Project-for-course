@@ -1,0 +1,21 @@
+Regions=['Western Europe','Sub-Saharan Africa','Southern Asia','Southeastern Asia','North America','MiddleEastNAfrica','LAmericaCaribbean','EasternAsia','CentralEasternEurope','AustanNZ']
+print(Regions)
+ObesityRate_Per_Region=[24.5,17.0,5.4,10.9,34.3,30.5,24.6,9.4,24.8,31.2]
+print(ObesityRate_Per_Region)
+print(dict(zip(Regions,ObesityRate_Per_Region)))
+ObesityrRateDict=dict(zip(Regions,ObesityRate_Per_Region))
+print(ObesityrRateDict)
+ObesityKeys=ObesityrRateDict.keys()
+print(ObesityKeys)
+ObesityValues=ObesityrRateDict.values()
+print(ObesityValues)
+for key in ObesityrRateDict.keys():
+    if key=='Southern Asia':
+        del ObesityrRateDict['Southern Asia']
+        break
+print(ObesityrRateDict)
+x=list(ObesityKeys)
+y= list(ObesityValues)
+plt.bar(x,y)
+plt.title('Obesity Rate per Region')
+plt.show()
